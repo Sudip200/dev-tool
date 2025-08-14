@@ -18,7 +18,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api',  postRoutes);
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = 'mongodb+srv://sdUser:oEor0qA7kTN5tr8h@cluster0.3tbww.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI =
  
 mongoose.connect(MONGO_URI)
 .then(() => {  
