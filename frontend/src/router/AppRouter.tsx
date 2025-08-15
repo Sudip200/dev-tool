@@ -17,6 +17,7 @@ const AppRouter: React.FC = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookmarks" element={<BookMark />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="*" element={<h2>404 - Not Found</h2>} />
         </Route>
       </Routes>
     </Router>

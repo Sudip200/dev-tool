@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { MessageCircle, Bookmark, Search, Code, Layers, User, Settings, Home, Tag, X, Send, Reply, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Comment {
   _id: string;
@@ -296,8 +297,14 @@ const Dashboard: React.FC = () => {
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg' 
                       : 'text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50'
                   }`}>
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{label}</span>
+                     <Link  to={`/${label.toLowerCase()}`}>
+                     <Icon className="w-5 h-5" />
+                    </Link>
+                     <Link   to={`/${label.toLowerCase()}`}>
+                     <span className="font-medium">{label}</span>
+                    </Link>
+                   
+                   
                   </div>
                 );
               })}
