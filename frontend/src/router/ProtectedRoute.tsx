@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
+
 import { type RootState } from '../app/store';
 import { checkAuth } from '../features/auth/authSlice';
+import { Outlet } from 'react-router-dom';
 
 const ProtectedRoute: React.FC = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
