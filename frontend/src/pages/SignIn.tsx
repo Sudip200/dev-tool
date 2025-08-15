@@ -21,7 +21,7 @@ const SignIn: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, formData);
       const { token } = response.data;
       dispatch(setToken(token));
       navigate('/dashboard');
@@ -69,7 +69,7 @@ const SignIn: React.FC = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg  font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Sign In

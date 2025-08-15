@@ -60,13 +60,13 @@ export const createComment = async (req: Request, res: Response) => {
 
 // Get posts with pagination
 export const getPosts = async (req: Request, res: Response) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 10 ,searchQuery} = req.query;
+  
   try {
-    const posts = await Post.find()
+    const posts = await Post.find({ title: { $regex: searchQuery, $options: 'i' } })
       .populate('author', 'name email')
       .skip((Number(page) - 1) * Number(limit))
       .limit(Number(limit));
-      console.log(posts);
 
     const total = await Post.countDocuments();
     res.json({ posts, total });
@@ -114,7 +114,7 @@ export const bookmarkPost = async (req: Request, res: Response) => {
 
     // Check if already bookmarked
     const exists = await Bookmark.findOne({
-      user: (req.user as IUser)._id,
+      user: req.user.user.id,
       post: postId
     });
     if (exists) {
@@ -122,7 +122,7 @@ export const bookmarkPost = async (req: Request, res: Response) => {
     }
 
     const bookmark = new Bookmark({
-      user: (req.user as IUser)._id,
+      user: req.user.user.id,
       post: postId
     });
 
@@ -141,7 +141,7 @@ export const getBookmarks = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    const bookmarks = await Bookmark.find({ user: (req.user as IUser)._id })
+    const bookmarks = await Bookmark.find({ user: req.user.user.id})
       .populate({
         path: 'post',
         populate: { path: 'author', select: 'name email' }

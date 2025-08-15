@@ -29,7 +29,7 @@ const NameStep: React.FC<NameStepProps> = ({ nextStep, handleChange, values }) =
       </div>
       <div className="flex items-center justify-between">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg  font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
           type="button"
           onClick={continueStep}
         >
